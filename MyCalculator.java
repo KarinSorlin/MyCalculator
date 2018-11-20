@@ -1,10 +1,12 @@
+import java.util.Scanner;
+
 public class MyCalculator{
 
-  public int add(int num1, int num2){
+  public double add(double num1, double num2){
     return num1 + num2;
   }
 
-  public int sub(int num1, int num2){
+  public double sub(double num1, double num2){
     return num1-num2;
   }
 
@@ -12,11 +14,47 @@ public class MyCalculator{
     return num1/num2;
   }
 
-  public int mult(int num1, int num2){
+  public double mult(double num1, double num2){
     return num1 * num2;
   }
 
   public static void main(String[] args){
+    MyCalculator calc = new MyCalculator();
 
-  }
-}
+    Scanner scan = new Scanner (System.in);
+
+    while (true){
+      String operator = "";
+      do {
+        System.out.println("Choose operator +, -, *, / or q to quit");
+        operator = scan.next();
+        if(operator.equals("q")){
+          System.out.println("Good Bye");
+          return ;
+        }
+      } while ((operator.equals("+") || operator.equals("-") || operator.equals("*") || operator.equals("/"))==false);
+
+      System.out.println("Enter first number");
+      double num1 = scan.nextDouble();
+      System.out.println("Enter second number");
+      double num2 = scan.nextDouble();
+
+      if(operator.equals("+")){
+        System.out.println("The sum is: " + calc.add(num1,num2));
+      }
+      else if(operator.equals("-")){
+        System.out.println("The difference is: " + calc.sub(num1,num2));
+      }
+      else if(operator.equals("*")){
+        System.out.println("The product is: " + calc.mult(num1,num2));
+      }
+      else if(operator.equals("/")){
+        if(num2 == 0){
+          System.out.println("You can't divide by 0");
+        } else {
+          System.out.println("The quotient is: " + calc.div(num1,num2));
+        }
+      }
+    } //while
+  } //main
+} //class
