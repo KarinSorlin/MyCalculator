@@ -33,6 +33,18 @@ public class MyCalculator{
     return num;
   }
 
+  public String enterOperator(){
+    Scanner scan = new Scanner (System.in);
+    String operator;
+    do {
+      System.out.println("Choose operator +, -, *, / or q to quit");
+      operator = scan.next();
+    } while ((operator.equals("q") || operator.equals("+") ||
+              operator.equals("-") || operator.equals("*") ||
+              operator.equals("/"))==false);
+    return operator;
+  }
+
 
   public static void main(String[] args){
     MyCalculator calc = new MyCalculator();
@@ -40,15 +52,12 @@ public class MyCalculator{
     Scanner scan = new Scanner (System.in);
 
     while (true){
-      String operator = "";
-      do {
-        System.out.println("Choose operator +, -, *, / or q to quit");
-        operator = scan.next();
-        if(operator.equals("q")){
-          System.out.println("Good Bye");
-          return ;
-        }
-      } while ((operator.equals("+") || operator.equals("-") || operator.equals("*") || operator.equals("/"))==false);
+      String operator = calc.enterOperator();
+
+      if(operator.equals("q")){
+        System.out.println("Exiting program");
+        break;
+      }
 
       System.out.println("Enter first number");
       double num1 = calc.enterDouble();
