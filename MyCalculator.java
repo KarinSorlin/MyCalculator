@@ -18,6 +18,22 @@ public class MyCalculator{
     return num1 * num2;
   }
 
+  public double enterDouble(){
+    Scanner scan = new Scanner (System.in);
+    double num;
+    while(true){
+      try{
+        num = scan.nextDouble();
+        break;
+      } catch (Exception e) {
+        String str = scan.nextLine();
+        System.out.println(str + " is not a number!");
+      }
+    }
+    return num;
+  }
+
+
   public static void main(String[] args){
     MyCalculator calc = new MyCalculator();
 
@@ -35,9 +51,9 @@ public class MyCalculator{
       } while ((operator.equals("+") || operator.equals("-") || operator.equals("*") || operator.equals("/"))==false);
 
       System.out.println("Enter first number");
-      double num1 = scan.nextDouble();
+      double num1 = calc.enterDouble();
       System.out.println("Enter second number");
-      double num2 = scan.nextDouble();
+      double num2 = calc.enterDouble();
 
       if(operator.equals("+")){
         System.out.println("The sum is: " + calc.add(num1,num2));
