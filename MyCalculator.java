@@ -2,57 +2,89 @@ import java.util.Scanner;
 
 public class MyCalculator{
 
-  public double add(double num1, double num2){
+  private static double firstNumber;
+  private static double secondNumber;
+  private static double answer;
+  private static String operator;
+
+  private static double add(double num1, double num2){
     return num1 + num2;
   }
 
-  public double sub(double num1, double num2){
+  private static double sub(double num1, double num2){
     return num1-num2;
   }
 
-  public double div(double num1, double num2){
+  private static double div(double num1, double num2){
     return num1/num2;
   }
 
-  public double mult(double num1, double num2){
+  private static double mult(double num1, double num2){
     return num1 * num2;
   }
 
-  public static void main(String[] args){
-    MyCalculator calc = new MyCalculator();
+  private static double enterDouble(){
+    Scanner scan = new Scanner (System.in);
+    double num;
+    while(true){
+      try{
+        num = scan.nextDouble();
+        break;
+      } catch (Exception e) {
+        String str = scan.nextLine();
+        System.out.println(str + " is not a number!");
+      }
+    }
+    return num;
+  }
 
+  private static String enterOperator(){
+    Scanner scan = new Scanner (System.in);
+    String operator;
+    do {
+      System.out.println("Choose operator +, -, *, / or q to quit");
+      operator = scan.next();
+    } while ((operator.equals("q") || operator.equals("+") ||
+              operator.equals("-") || operator.equals("*") ||
+              operator.equals("/"))==false);
+    return operator;
+  }
+
+
+  public static void main(String[] args){
     Scanner scan = new Scanner (System.in);
 
     while (true){
-      String operator = "";
-      do {
-        System.out.println("Choose operator +, -, *, / or q to quit");
-        operator = scan.next();
-        if(operator.equals("q")){
-          System.out.println("Good Bye");
-          return ;
-        }
-      } while ((operator.equals("+") || operator.equals("-") || operator.equals("*") || operator.equals("/"))==false);
+      operator = enterOperator();
+
+      if(operator.equals("q")){
+        System.out.println("Exiting program");
+        break;
+      }
 
       System.out.println("Enter first number");
-      double num1 = scan.nextDouble();
+      firstNumber = enterDouble();
       System.out.println("Enter second number");
-      double num2 = scan.nextDouble();
+      secondNumber = enterDouble();
 
       if(operator.equals("+")){
-        System.out.println("The sum is: " + calc.add(num1,num2));
+        answer = add(firstNumber,secondNumber);
+        System.out.println("The sum is: " + answer);
       }
       else if(operator.equals("-")){
-        System.out.println("The difference is: " + calc.sub(num1,num2));
+        answer = sub(firstNumber,secondNumber);
+        System.out.println("The difference is: " + answer);
       }
       else if(operator.equals("*")){
-        System.out.println("The product is: " + calc.mult(num1,num2));
+        answer = mult(firstNumber,secondNumber);
+        System.out.println("The product is: " + answer);
       }
       else if(operator.equals("/")){
-        if(num2 == 0){
+        if(secondNumber == 0){
           System.out.println("You can't divide by 0");
         } else {
-          System.out.println("The quotient is: " + calc.div(num1,num2));
+          answer = div(firstNumber,secondNumber);
+          System.out.println("The quotient is: " + answer);
         }
       }
     } //while
