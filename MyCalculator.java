@@ -50,6 +50,10 @@ public class MyCalculator{
     return operator;
   }
 
+  public double getFirstNumber(){
+    return firstNumber;
+  }
+
 
   public static void main(String[] args){
     Scanner scan = new Scanner (System.in);
